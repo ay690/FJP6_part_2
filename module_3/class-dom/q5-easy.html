@@ -100,7 +100,21 @@
     </div>
     <script>
       // Q Make the filter work
-      
+      let selectTag = document.querySelector("select");
+      selectTag.addEventListener("change", function(e){
+        console.log(e);
+        let filter = e.target.value;
+        let allMovies = document.querySelectorAll(".movies");
+        for(let i = 0; i < allMovies.length; i++){
+          let current_pTag = allMovies[i].querySelector("p");
+          let current_filter = current_pTag.getAttribute("data-category");
+          if(filter == 'none' || filter == current_filter){
+            allMovies[i].style.display = "block";
+          }else{
+            allMovies[i].style.display = 'none';
+          }
+        }
+      })
     </script>
   </body>
 </html>

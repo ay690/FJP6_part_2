@@ -86,4 +86,27 @@ body{
     background-color: #f8c291;
 }
 
+.modal-cont{
+    height: 50vh;
+    width: 45vw;
+    background-color: aqua;
+    position: absolute;
+    top: calc((100vh - 50vh) / 2);
+    left: calc((100vw - 45vw) / 2);
+    display: flex;
+}
+
+.textarea-ki-cont {
+    height: 100%;
+    width: 75%;
+    border: none;
+    outline: none;
+    background-color: blanchedalmond;
+    resize: none;
+}
+.priority-cont-colour {
+   height: 100%;
+   width: 25%;
+   background-color: rgb(113, 193, 113); 
+}
 

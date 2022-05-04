@@ -1,0 +1,89 @@
+/* //default style */
+* {
+    box-sizing: border-box;
+}
+
+/* //default style */
+body{
+    padding: 0;
+    margin: 0;
+}
+
+.toolbar-cont {
+    height: 5rem;
+    background-color: #222f3e;
+    display: flex;
+    align-items: center;
+}
+
+.toolbar-cont > *{
+    margin-left: 4rem;
+    border-radius: 2px;
+}
+
+.toolbar-priority-cont{
+    height: 3.5rem;
+    width: 16rem;
+    background-color: darkslategray;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+.func-btn-cont{
+    height: 3.5rem;
+    width: 8rem;
+    background-color: beige;
+    display: flex;
+}
+
+/*  " > * "  this means parent ke sabhi child ko */
+.func-btn-cont > *{  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    font-size: 1.5rem;
+    color: #636e72;
+}
+
+.colour{
+    height: 1.5rem;
+    width: 3rem;
+    background-color: rgb(255, 204, 127); 
+}
+
+.reddish-colour {
+    background-color: red;
+    height: 1.5rem;
+    width: 3rem;
+    border-radius: 3px;
+}
+
+.yellowish-colour {
+    background-color: rgb(251, 255, 0);
+    height: 1.5rem;
+    width: 3rem;
+    border-radius: 3px;
+}
+
+.greenish-colour {
+    background-color: rgb(0, 255, 34);
+    height: 1.5rem;
+    width: 3rem;
+    border-radius: 3px;
+}
+
+.blackish-colour {
+    background-color: black;
+    height: 1.5rem;
+    width: 3rem;
+    border-radius: 3px;
+}
+
+.func-btn-cont > *:hover{
+    background-color: #f8c291;
+}
+
+

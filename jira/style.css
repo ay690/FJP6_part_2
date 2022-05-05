@@ -1,176 +1,171 @@
-/* //default style */
 * {
     box-sizing: border-box;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
 }
-
-/* //default style */
-body{
-    padding: 0;
+body {
     margin: 0;
+    padding: 0;
+    background-color: #f5f6fa;
 }
 
-.toolbar-cont {
+.toolbox-cont {
     height: 5rem;
-    background-color: #222f3e;
+    background-color: #4b4b4b;
     display: flex;
     align-items: center;
 }
-
-.toolbar-cont > *{
+.toolbox-cont > * {
     margin-left: 4rem;
     border-radius: 2px;
 }
-
-.toolbar-priority-cont{
+.toolbox-priority-cont {
     height: 3.5rem;
-    width: 16rem;
-    background-color: darkslategray;
+    width: 14rem;
+    background-color: #3d3d3d;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    
 }
-
-.func-btn-cont{
+.action-btn-cont {
     height: 3.5rem;
-    width: 8rem;
-    background-color: beige;
+    width: 6rem;
+    background-color: #3d3d3d;
     display: flex;
 }
-
-/*  " > * "  this means parent ke sabhi child ko */
-.func-btn-cont > *{  
+.action-btn-cont > * {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50%;
-    font-size: 1.5rem;
-    color: #636e72;
+    font-size: 2rem;
+    color: #d1d8e0;
 }
-
-.colour{
+.color {
     height: 1.2rem;
-    width: 3rem;
-    background-color: rgb(255, 204, 127); 
+    width: 2rem;
+    background-color: lightsalmon;
+    border-radius: 2px;
 }
 
-.reddish-colour {
-    background-color: red;
-    height: 1.5rem;
-    width: 3rem;
-    border-radius: 3px;
+.lightpink {
+    background-color: lightpink;
 }
-
-.yellowish-colour {
-    background-color: rgb(251, 255, 0);
-    height: 1.5rem;
-    width: 3rem;
-    border-radius: 3px;
+.lightgreen {
+    background-color: lightgreen;
 }
-
-.greenish-colour {
-    background-color: rgb(0, 255, 34);
-    height: 1.5rem;
-    width: 3rem;
-    border-radius: 3px;
+.lightblue {
+    background-color: lightblue;
 }
-
-.blackish-colour {
+.black {
     background-color: black;
-    height: 1.5rem;
-    width: 3rem;
-    border-radius: 3px;
 }
 
-.func-btn-cont > *:hover{
-    background-color: #f8c291;
+.action-btn-cont > *:hover {
+    background-color: #485460;
 }
 
-.modal-cont{
+.modal-cont {
     height: 50vh;
     width: 45vw;
-    background-color: aqua;
+    background: lightblue;
     position: absolute;
-    top: calc((100vh - 50vh) / 2);
-    left: calc((100vw - 45vw) / 2);
+    top: calc( ( 100vh - 50vh ) / 2 );
+    left: calc( ( 100vw - 45vw ) / 2 );
     display: none;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
-.textarea-ki-cont {
+.textarea-cont {
     height: 100%;
     width: 75%;
     border: none;
     outline: none;
-    background-color: blanchedalmond;
     resize: none;
+    background-color: #dfe4ea;
     padding: 2rem;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
 }
-.priority-cont-colour {
-   height: 100%;
-   width: 25%;
-   /* background-color: rgb(113, 193, 113); */
-   display: flex;
-   flex-direction: column;
-   justify-content: space-around;
-   align-items: center;
-   background-color:#636e72 
+.priority-colors-cont {
+    height: 100%;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #4b4b4b;
 }
-
-.reddish-priority-colour{
+.priority-color {
     height: 3rem;
     width: 55%;
-    background-color: red;
-    border-radius: 2px;
 }
-
-.yellowish-priority-colour{
-    height: 3rem;
-    width: 50%;
-    background-color: rgb(251, 255, 0);
-    border-radius: 2px;
-}
-.greenish-priority-colour{
-    height: 3rem;
-    width: 55%;
-    background-color: rgb(0, 255, 34);
-    border-radius: 2px;
-}
-.blackish-priority-colour{
-    height: 3rem;
-    width: 55%;
-    background-color: black;
-    border-radius: 2px;
-}
-
 .border {
-    border: 3.5px solid #b2bec3;
+    border: 5px solid #d1d8e0;
 }
 
 .ticket-cont {
-    height: 12rem;
+    height: 13rem;
     width: 16rem;
-    background-color: #dfe6e9;
+    background-color: #f1f2f6;
 }
-.ticket-colour {
+.ticket-color {
     height: 1rem;
-    background-color: lightpink;
 }
-
 .ticket-id {
     height: 2rem;
     padding: 0.4rem;
 }
-
-.ticket-task {
-   height: calc(100% - 1rem - 2rem);
-   padding: 0.4rem;
+.task-area {
+    height: calc( 100% - 1rem - 2rem - 2rem );
+    padding: 0.4rem;
+    outline: none;
+    font-size: 1.3rem;
 }
-
-.main-cont{
+.ticket-lock {
+    height: 2rem;
+    display: flex;
+    font-size: 1.5rem;
+    padding-right: 1rem;
+    justify-content: flex-end;
+    color: #a5b1c2;
+}
+.main-cont {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     padding: 2rem;
     gap: 2rem;
+    justify-content: center;
+}
+
+
+@media screen and (min-width: 425px) and (max-width: 768px) {
+    .modal-cont {
+        width: 60vw;
+        left: calc( ( 100vw - 60vw ) / 2 );
+    }
+}
+
+@media screen and (max-width: 426px) {
+    .modal-cont {
+        width: 75vw;
+        height: 55vh;
+        top: calc( ( 100vh - 55vh ) / 2 );
+        left: calc( ( 100vw - 75vw ) / 2 );
+        flex-direction: column;
+    }
+    .textarea-cont {
+        width: 100%;
+        height: 75%;
+    }
+    .priority-colors-cont {
+        flex-direction: row;
+        width: 100%;
+        height: 25%;
+    }
+    .priority-color {
+        width: 17%;
+    }
+    .toolbox-cont > * {
+        margin-left: 2rem;
+        border-radius: 2px;
+    }
 }

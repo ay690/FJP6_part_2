@@ -47,7 +47,24 @@ for(let i=0;i<allCells.length;i++){
         console.log("After UPdate",cellObject);
         updateChildren(cellObject);
     })
+
+    allCells[i].addEventListener("keydown",function(e){
+        if(e.key == 'Backspace'){
+            let cell = e.target;
+            let {rowId,colId} = getRowIdColIdFromElement(cell);
+            let cellObject = db[rowId][colId];
+            if(cellObject.formula){
+                //update db
+                cell.formula = "";
+                //update ui 
+                formulaInput.value = "";
+                cell.textContent = "";
+                removeFormula(cellObject);
+            }
+        }
+    })
 }
+
 
 formulaInput.addEventListener("blur",function(e){
     let formula = e.target.value;

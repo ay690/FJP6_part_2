@@ -60,6 +60,7 @@ formulaInput.addEventListener("blur",function(e){
         cellObject.formula = formula;
         //update UI
         lastSelectedCell.textContent = computedValue;
+        updateChildren(cellObject);
     }
 
 })

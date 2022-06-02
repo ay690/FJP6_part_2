@@ -8,6 +8,7 @@ function solveFormula(formula, selfCellObject){
           let {rowId,colId} = getRowIdColIdFromAddress(formulaComp);
           let cellObject = db[rowId][colId];
           let value = cellObject.value;
+          if(selfCellObject)
           cellObject.children.push(selfCellObject.name);
           console.log(cellObject);
           formula = formula.replace(formulaComp,value);
@@ -18,6 +19,20 @@ function solveFormula(formula, selfCellObject){
     return computedValue;
 }
 
+function updateChildren(cellObject){
+    for(let i=0;i<cellObject.children.length;i++){
+        let childName = cellObject.children[i];
+        let {rowId,colId} = getRowIdColIdFromAddress(childName);
+        let childCellObject = db[rowId][colId];
+        let newValue = solveFormula(childCellObject.formula);
+        //update UI
+        let cellUI = document.querySelector(`div[rowid='${rowId}'][colid='${colId}']`);
+        cellUI.textContent = newValue;
+        //update db
+        childCellObject.value = newValue;
+        updateChildren(childCellObject);
+    }
+}
 
 
 function getRowIdColIdFromElement(element){

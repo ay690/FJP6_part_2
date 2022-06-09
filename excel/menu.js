@@ -60,6 +60,7 @@ function setFontStyle(styleName,element){
                 lastSelectedCell.style.textDecoration = "none";
 
             }
+            element.classList.remove("active-font-style");
 
         }else{
 
@@ -76,6 +77,7 @@ function setFontStyle(styleName,element){
                 lastSelectedCell.style.textDecoration = "underline";
 
             }
+            element.classList.add("active-font-style");
 
         }
 

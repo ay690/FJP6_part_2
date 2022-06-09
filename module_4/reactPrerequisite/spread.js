@@ -30,6 +30,9 @@ console.log(obj.address);
 console.log("####################")
 console.log(obj2.name);
 console.log(obj2.address);
+//Only first level that is name will be changed in obj2, obj name will reamin Adam 
+//and rest is refernces will be pointing
+//to the heap so changes in obj.addresses and country will be reflected in obj2 and as well as in obj1 i.e obj
 
 //Deep copy
 let obj3 = JSON.parse(JSON.stringify(obj));

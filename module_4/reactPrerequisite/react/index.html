@@ -34,7 +34,26 @@ function Element(){
     )
 }
 
-ReactDOM.render(<Element/>,root);
+function Element2(){
+    return(
+        <h2>How are you?</h2>  
+    )
+}
+
+function Parent(){
+    return(
+        <div>
+        <Element/>
+        <Element2/>
+        <Element/>
+        <Element/>
+        <Element2/>
+        <Element/>
+        </div>
+    )
+}
+
+ReactDOM.render(<Parent/>, root);
 
 </script>
 </html>

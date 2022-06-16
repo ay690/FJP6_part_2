@@ -28,27 +28,32 @@
 
 //JSX -> javascript + html
 
-function Element(){
+function Element1({name = "Ani", age}){
     return(
-        <h1>Hello Coder</h1>
+        <div>
+        <h1>Hello {name} Coder</h1>
+        <h3> {age} </h3>
+    </div>
     )
 }
 
-function Element2(){
+function Element2({name = "abi", age}){
     return(
-        <h2>How are you?</h2>  
+        <div>
+        <h2>How are you {name}? I am {age} years old</h2>  
+        </div>
     )
 }
 
 function Parent(){
     return(
         <div>
-        <Element/>
+        <Element1 name = "Aniket" age = "24"/>
+        <Element2 name = "Harsh" age = "5"/>
+        <Element1/>
+        <Element1/>
         <Element2/>
-        <Element/>
-        <Element/>
-        <Element2/>
-        <Element/>
+        <Element1/>
         </div>
     )
 }

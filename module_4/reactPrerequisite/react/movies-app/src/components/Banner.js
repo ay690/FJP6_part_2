@@ -1,5 +1,5 @@
 import { Component } from "react";
-
+import {movies} from "../movieData"
 
 class Banner extends Component{
     render(){

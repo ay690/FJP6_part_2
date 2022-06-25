@@ -81,7 +81,7 @@ class MovieList extends Component {
                             <li className="page-item"><a className="page-link" href= "#"  onClick={()=>this.handlePageClick(ele)}>{ele}</a></li>
                         ))}
                         
-                        <li className="page-item"><a className="page-link" href= "#"  onClick={this.handleNext} >Next</a></li>
+                        <li className="page-item"><a className="page-link" href= "#"  onClick={this.handleNext}>Next</a></li>
                     </ul>
                 </nav>
                 </div>

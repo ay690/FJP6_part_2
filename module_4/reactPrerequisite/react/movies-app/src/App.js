@@ -8,8 +8,8 @@ function App() {
   return (
     <div>
     <NavBar/>
-    <Banner/>
-    <MovieList/>
+    {/* <Banner/>
+    <MovieList/> */}
     <Fav/>
     </div>
   );

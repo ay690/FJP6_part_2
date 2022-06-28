@@ -9,7 +9,8 @@ class MovieList extends Component {
             hover:"",
             pArr :[1],
             movies:[],
-            currPage:1
+            currPage:1,
+            favourites:[]
         };
     }
 
@@ -41,7 +42,7 @@ class MovieList extends Component {
         if(this.state.currPage!=1){
             this.setState({
                 currPage:this.state.currPage-1
-            },this.changeMovies)
+            },this.changeMovies);
         }
     }
 
@@ -49,8 +50,27 @@ class MovieList extends Component {
         if(ele!=this.state.currPage){
             this.setState({
                 currPage: ele
-            },this.changeMovies)
+            },this.changeMovies);
         }
+    }
+
+    handleFavourites = (movieObj)=>{
+        let oldData = JSON.parse(localStorage.getItem('movies-app') || '[]')
+        if(this.state.favourites.includes(movieObj.id)){
+            oldData = oldData.filter((movie)=>movie.id!=movieObj.id)
+        }else{
+            oldData.push(movieObj)
+        }
+        localStorage.setItem("movies-app",JSON.stringify(oldData));
+        this.handleFavouritesState();
+    }
+
+    handleFavouritesState = ()=>{
+        let oldData = JSON.parse(localStorage.getItem('movies-app')|| '[]')
+        let temp = oldData.map((movie)=>movie.id);
+        this.setState({
+            favourites:[...temp]
+        })
     }
 
     render() {
@@ -68,7 +88,9 @@ class MovieList extends Component {
                             <h5 className="card-title movie-title">{movieEle.title}</h5>
                             <div style={{ display: 'flex', justifyContent: "center" }}>
                                 {this.state.hover == movieEle.id && (
-                                <a href="#" type="button" className="btn btn-primary movies-button">Add to Favourites</a>)}
+                                <a type="button" className="btn btn-primary movies-button" onClick={()=>this.handleFavourites(movieEle)}>
+                                    {this.state.favourites.includes(movieEle.id)?"Remove from Favourites":"Add to Favourites"}
+                                </a>)}
                             </div>
                         </div>
                     ))}
@@ -76,12 +98,12 @@ class MovieList extends Component {
                 <div style={{display:"flex",justifyContent:"center"}}>
                 <nav aria-label="Page navigation example">
                     <ul className="pagination">
-                        <li className="page-item"><a className="page-link" href= "#" onClick={this.handlePrev}>Previous</a></li>
+                        <li className="page-item"><a className="page-link" onClick={this.handlePrev}>Previous</a></li>
                         {this.state.pArr.map((ele)=>(
-                            <li className="page-item"><a className="page-link" href= "#"  onClick={()=>this.handlePageClick(ele)}>{ele}</a></li>
+                            <li className="page-item"><a className="page-link" onClick={()=>this.handlePageClick(ele)}>{ele}</a></li>
                         ))}
                         
-                        <li className="page-item"><a className="page-link" href= "#"  onClick={this.handleNext}>Next</a></li>
+                        <li className="page-item"><a className="page-link" onClick={this.handleNext} >Next</a></li>
                     </ul>
                 </nav>
                 </div>

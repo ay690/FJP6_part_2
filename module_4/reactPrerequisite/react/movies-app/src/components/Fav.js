@@ -123,6 +123,18 @@ class Fav extends Component {
         })
     }
 
+    handleDelete = (id) =>{
+        let nayaArr = [];
+
+        nayaArr = this.state.movies.filter((movieObj) => movieObj.id != id);
+        
+        this.setState({
+            movies:[...nayaArr]
+        })
+
+        localStorage.setItem("movies-app", JSON.stringify(nayaArr))
+    }
+
     render() {
         let genreIds = { 28: "Action", 12: "Adventure", 16: "Animation", 35: "Comedy", 80: "Crime", 99: "Documentary", 18: "Drama", 10751: "Family", 14: "Fantasy", 36: "History", 27: "Horror", 10402: "Music", 9648: "Mystery", 10749: "Romance", 878: "Science Fiction", 10770: "TV Movie", 53: "Thriller", 10752: "War", 37: "Western"}
         return (
@@ -172,7 +184,7 @@ class Fav extends Component {
                                             <td>{genreIds[movieEle.genre_ids[0]]}</td>
                                             <td className="text-center">{movieEle.popularity}</td>
                                             <td className="text-center">{movieEle.vote_average}</td>
-                                            <td className="text-center"><button type="button" className="btn btn-danger">Delete</button></td>
+                                            <td className="text-center"><button type="button" className="btn btn-danger" onClick={() => this.handleDelete(movieEle.id)}>Delete</button></td>
                                         </tr>
                                     ))
                                 }

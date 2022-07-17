@@ -8,5 +8,5 @@ import secret from "./secrets"
 
 // Initialize Firebase
 const app = initializeApp(secret);
-export let auth = getAuth(app);
+export const auth = getAuth(app);
 export const db = getFirestore(app);

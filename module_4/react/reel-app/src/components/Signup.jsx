@@ -1,6 +1,8 @@
 import {useState} from "react"
-import {auth} from "../firebase"
+import {auth,db} from "../firebase"
 import {createUserWithEmailAndPassword} from "firebase/auth"
+import {addDoc,collection} from "firebase/firestore"
+
 function Signup(){
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
@@ -14,7 +16,14 @@ function Signup(){
             setLoader(true);
             let userCred = await createUserWithEmailAndPassword(auth,email,password)
             // console.log(userCred.user);
-            setUser(userCred.user);
+            //setUser(userCred.user);
+            const docRef = await addDoc(collection(db, "user"),{
+              email,
+              name,
+              reelsIds: [],
+              profilImgUrl: "",
+              userId: userCred.user.uid
+            })
         }catch(error){
             setError(error.message);
             setTimeout(()=>{

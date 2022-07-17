@@ -57,7 +57,7 @@ function Login(){
 
     return (
         <>
-        {mainLoader == true ? <h1>Page is Loading.....</h1> : error != "" ? <h1>Error is {error}</h1>:
+        {error != "" ? <h1>Error is {error}</h1>:
              loader == true?<h1>...Loading</h1>:
                 user != null ? <><h1>User is {user.uid}</h1><button onClick={logOut}>Logout</button></>:
              <><input type="email" onChange={trackEmail}  placeholder="email" />

@@ -7,7 +7,7 @@ import PageNotFound from "./components/PageNotFound"
 import Profile from "./components/Profile"
 import Signup from "./components/Signup"
 import {Switch,Route,Redirect } from "react-router-dom"
-import { AuthContextProvider } from './context/AuthContext';
+import { AuthContext, AuthContextProvider } from './context/AuthContext';
 import { useContext } from 'react';
 import { auth } from './firebase';
 
@@ -23,12 +23,16 @@ function App() {
       {/* <Route path="/feed">
        <Feed></Feed>
       </Route> */}
-      <Route path="/login">
+
+     <RedirectToFeed path = "/login" comp = {Login}></RedirectToFeed>
+      {/* <Route path="/login">
        <Login></Login>
-      </Route>
-      <Route path="/signup">
+      </Route> */}
+      
+      <RedirectToFeed path = "/signup" comp = {Signup}></RedirectToFeed>
+      {/* <Route path="/signup">
        <Signup></Signup>
-      </Route>
+      </Route> */}
 
       <PrivateRoute path = "/profile" comp = {Profile}>
 
@@ -46,7 +50,7 @@ function App() {
 
 function PrivateRoute(props){
  let Component = props.comp;
- let cUser = useContext(auth);
+ let cUser = useContext(AuthContext);
 
  return(
   <Route
@@ -57,6 +61,25 @@ function PrivateRoute(props){
     }
   }></Route>
  )
+}
+
+function RedirectToFeed(props){
+  let Component = props.comp;
+  let cUser = useContext(AuthContext);
+
+  //if current user(cUser) = null -> redirect to login
+  //if not null -> redirect to feed
+  
+  return(
+    <Route
+    {...props}
+    render={
+     (props) => {
+      return cUser!= null ? <Redirect {...props} to="/feed"></Redirect> :
+      <Component{...props}></Component>
+     }
+    }></Route>
+  )
 }
 
 export default App;

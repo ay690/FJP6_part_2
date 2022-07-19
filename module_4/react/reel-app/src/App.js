@@ -6,8 +6,10 @@ import Login from "./components/Login"
 import PageNotFound from "./components/PageNotFound"
 import Profile from "./components/Profile"
 import Signup from "./components/Signup"
-import {Switch,Route} from "react-router-dom"
+import {Switch,Route,Redirect } from "react-router-dom"
 import { AuthContextProvider } from './context/AuthContext';
+import { useContext } from 'react';
+import { auth } from './firebase';
 
 
 
@@ -15,24 +17,46 @@ function App() {
   return (
     <AuthContextProvider>
     <Switch>
-      <Route path="/feed">
+      <PrivateRoute path = "/feed" comp = {Feed}>
+
+      </PrivateRoute>
+      {/* <Route path="/feed">
        <Feed></Feed>
-      </Route>
+      </Route> */}
       <Route path="/login">
        <Login></Login>
       </Route>
       <Route path="/signup">
        <Signup></Signup>
       </Route>
-      <Route path="/profile">
+
+      <PrivateRoute path = "/profile" comp = {Profile}>
+
+      </PrivateRoute>
+      {/* <Route path="/profile">
        <Profile></Profile>
-      </Route>
+      </Route> */}
       <Route >
        <PageNotFound></PageNotFound>
       </Route>
     </Switch>
     </AuthContextProvider>
   );
+}
+
+function PrivateRoute(props){
+ let Component = props.comp;
+ let cUser = useContext(auth);
+
+ return(
+  <Route
+  {...props}
+  render={
+    (props) =>{
+      return cUser!=null ?<Component {...props}></Component>:<Redirect {...props} to="/login"></Redirect>
+    }
+  }></Route>
+ )
 }
 
 export default App;

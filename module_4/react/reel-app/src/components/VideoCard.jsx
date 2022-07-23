@@ -2,7 +2,7 @@ import { useState } from "react"
 import "./videoCard.css"
 
 const VideoCard = () => {
-    let [playing, setPlaying] = useState(false);
+    let [playing, setPlaying] = useState(true);
     let [commentBoxOpen, setCommentBox] = useState(false);
     return (
         <div className="video-card">
@@ -38,7 +38,7 @@ const VideoCard = () => {
                 </div>
             ) : ("")}
 
-            <video onClick={(e) => {
+            <video className="video-card-video" onClick={(e) => {
                 if (playing) {
                     e.currentTarget.pause();
                     setPlaying(false)
@@ -46,7 +46,7 @@ const VideoCard = () => {
                     e.currentTarget.play();
                     setPlaying(true);
                 }
-            }} src="https://firebasestorage.googleapis.com/v0/b/class-demo-28b22.appspot.com/o/PROJECT__mpeg4.mp4?alt=media&token=a8d50db6-3296-48ee-9397-5d3d1f198499"
+            }} src="https://firebasestorage.googleapis.com/v0/b/class-demo-e40b9.appspot.com/o/abc.mp4?alt=media&token=c72b377d-c2cd-46f8-b0c1-0f0be8837ade"
                 crossrigin="anonymous" ></video>
 
         </div>

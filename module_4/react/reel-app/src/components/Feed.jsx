@@ -2,6 +2,8 @@ import "./feed.css"
 import { auth, storage } from "../firebase"
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
 import VideoCard from "./VideoCard"
+
+
 function Feed() {
     return (
         <>
@@ -61,10 +63,6 @@ function Feed() {
                 ></input>
 
 
-
-                <div className="upload_container">
-                    Upload
-                </div>
                 <div className="reels_container">
                     <VideoCard />
                 </div>

@@ -1,9 +1,11 @@
 import Product from "./product"
 import "./home.css"
 import {useSelector} from "react-redux"
-//import {useHistory} from "react-router"
+import {useHistory} from "react-router"
+
+
 let Home = () => {
-    //let history = useHistory();
+    let history = useHistory();
     let state = useSelector((state)=>state);
     return (
         <>
@@ -14,9 +16,9 @@ let Home = () => {
                 
             </div>
             <button
-            // onClick={()=>{
-            //     history.push("/cart")
-            // }}
+            onClick={()=>{
+                history.push("/cart")
+            }}
             className="shopping-cart-home">
                 <span class="material-symbols-outlined">
                     shopping_cart

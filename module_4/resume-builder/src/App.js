@@ -4,10 +4,10 @@ import LandingPage from "./components/landingPage";
 import Register from "./components/register";
 import Signin from "./components/signin";
 import Template from "./components/template";
+import { Route, Switch } from "react-router-dom";
 import Contact from "./components/contact";
 import Education from "./components/education";
-
-import { Route, Switch } from "react-router-dom";
+import Finalize from "./components/finalize";
 
 
 function App() {
@@ -30,14 +30,15 @@ function App() {
       <Route path="/signin" exact>
         <Signin></Signin>
       </Route>
-
       <Route path="/contact" exact>
         <Contact></Contact>
       </Route>
       <Route path="/education" exact>
         <Education></Education>
       </Route>
-
+      <Route path="/finalize" exact>
+        <Finalize></Finalize>
+      </Route>
     </Switch>
     </>
   );

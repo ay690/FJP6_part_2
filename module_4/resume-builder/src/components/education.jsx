@@ -2,14 +2,21 @@ import Preview from "./preview"
 import "./education.css"
 import {Link} from "react-router-dom"
 import {useState} from "react"
+import { useDispatch, useSelector } from "react-redux"
+import {addEducationCreator} from "../redux/action"
 
 function Education(){
-    const [education,setEducation] = useState({})
+    let state = useSelector((state)=>state);
+    let dispatch = useDispatch();
+    let education = state.educationReducer;
+    // const [education,setEducation] = useState({})
     
     const onChange = (event)=>{
         let key = event.target.id;
         let value = event.target.value;
-        setEducation({...education,[key]:value})
+        // setEducation({...education,[key]:value})
+        let newEducation = {...education,[key]:value}
+        dispatch(addEducationCreator(newEducation))
     }
 
     const getFieldData = (key)=>{
@@ -36,7 +43,7 @@ function Education(){
                     </div>
                     <div className="input-group">
                         <label htmlFor="">CGPA</label>
-                        <input type="text" id="summary"  value={getFieldData("summary")} onChange={onChange}/>
+                        <input type="text" id="cgpa"  value={getFieldData("cgpa")} onChange={onChange}/>
                     </div>
                     <div className="input-group">
                         <label htmlFor="">City</label>
@@ -51,11 +58,11 @@ function Education(){
                         <label htmlFor="">Graduation Year</label>
                         <input type="text" id="graduationYear"  value={getFieldData("graduationYear")} onChange={onChange}/>
                    </div>
-                   <div className="next btn full">
-                        <Link to="/contact">Back</Link>
+                   <div className="back-next btn full">
+                        <Link to="/contact" className="back">Back</Link>
                    </div>
-                   <div className="back btn full">
-                        <Link to="/">Next</Link>
+                   <div className="btn full">
+                        <Link to="/finalize" className="back">Next</Link>
                    </div>
                 </div>
             </div>

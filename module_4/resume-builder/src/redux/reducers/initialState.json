@@ -1,4 +1,10 @@
 {
+    
+    "auth":{
+        "isAuth":true,
+        "user":null
+    },
+    
     "document":{
         "id":null,
         "skinCd":"skin1"
@@ -10,5 +16,5 @@
     "contact":{
         
     }
-    
+
 }

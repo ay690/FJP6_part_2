@@ -5,6 +5,8 @@ import { useState } from "react"
 import {Link} from "react-router-dom"
 import { addContactCreator } from "../redux/action"
 
+
+
 function Contact(){
     let state = useSelector((state)=>state);
     let dispatch = useDispatch();
@@ -20,6 +22,7 @@ function Contact(){
         dispatch(addContactCreator(newContact))
     }
 
+
     const getFieldData = (key)=>{
         if(contact[key]){
             return contact[key];
@@ -27,6 +30,8 @@ function Contact(){
         return "";
     }
     
+
+
     return(
         <div className="contact">
             <div className="contact-form">
@@ -71,11 +76,11 @@ function Contact(){
                         <label htmlFor="">Pin Code</label>
                         <input type="text" id="pin" value={getFieldData("pin")} onChange={onChange}/>
                     </div>
-                    <div className="back-next 
+                    <div className="back-next btn-full
                     btn full">
                         <Link to="/template" className="back">Back</Link>
                    </div>
-                   <div className="btn full">
+                   <div className="btn-full btn full">
                         <Link to="/education" className="back">Next</Link>
                    </div>
                 </div>

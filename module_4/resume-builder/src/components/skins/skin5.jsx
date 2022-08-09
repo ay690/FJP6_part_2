@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import './skin5.css'
+
+
 const Skin5 = () => {
     let props = useSelector((state)=>state);    
     let {
@@ -41,8 +43,8 @@ const Skin5 = () => {
                         <div className="country">{country}</div>
                         <div className="pin">{pin}</div>
                     </div>
-                    <div className="phone">{`Ph - ${phone}`}</div>
-                    <div className="email">{`Email - ${email}`}</div>
+                    <div className="phone">Ph - {phone}</div>
+                    <div className="email">Email - {email}</div>
                 </div>
             </div>
             <div className="hsum">
@@ -71,12 +73,13 @@ const Skin5 = () => {
                     <div className="educationState">{educationState}</div>
                     
                 </div>
-                <div className="cgpa">{`CGPA: ${cgpa}`}</div>
+                <div className="cgpa">CGPA: {cgpa}</div>
             </div>
             </div>
         </React.Fragment>
 
     );
 }
+
 
 export default Skin5;

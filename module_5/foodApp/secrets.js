@@ -1,1 +1,1 @@
-export const password = "7I4gacSdkMcyvQed";
+module.exports = "7I4gacSdkMcyvQed";

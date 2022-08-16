@@ -19,7 +19,7 @@ const userModel = require("./userModel");
 app.post("/signup",async function(req,res){
     try{
         let data = req.body;
-        let newUser =await userModel.create(data);
+        let newUser = await userModel.create(data);
         console.log(newUser);
         res.json({
             message:"data recieved",

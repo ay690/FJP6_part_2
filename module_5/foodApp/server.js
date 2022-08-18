@@ -5,6 +5,10 @@ const app = express();
 //npm i cookie-parser
 const cookieParser = require("cookie-parser");
 
+//npm i jsonwebtoken
+var jwt = require('jsonwebtoken');
+const secretKey = "ajpodhdxnvxrcgdfz";
+
 app.use(express.json());
 app.use(cookieParser());
 
@@ -44,7 +48,11 @@ app.post("/login",async function(req,res){
             let user = await userModel.findOne({email:email});
             if(user){
                 if(user.password == password){
-                    res.cookie("token","sample value");
+                    //create JWT -> payload, secret key, algo by default -> SHA256
+                    const token = jwt.sign({data: user['_id']}, secretKey);
+                    console.log(token);
+                    //put token into cookie
+                    res.cookie("JWT","token");
                     res.send("User logged in");
                 }else{
                     res.send("Email or Password does not match");

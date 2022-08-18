@@ -71,9 +71,13 @@ app.post("/login",async function(req,res){
 
 app.patch("/forgetPassword",async function(req,res){
     try{
-        let {email} = req.body; //destructure email
+        let {email} = req.body;
+        let afterFiveMin = Date.now() + 1000*60*5;
         let otp = otpGenerator();
-        let user = await userModel.findOneAndUpdate({email:email},{otp:otp},{new:true});//ab forget password ke liye hume email, otp, new i.e new password chahiye hoga
+        //mail ke basis pr search
+        //by default-> findAndUpdate -> not updated send document
+        //new = true -> will get updated doc
+        let user = await userModel.findOneAndUpdate({email:email},{otp:otp,otpExpiry:afterFiveMin},{new:true});
         console.log(user);
         res.json({
             data:user,
@@ -86,17 +90,35 @@ app.patch("/forgetPassword",async function(req,res){
 
 app.patch("/resetPassword", async function(req,res){
     try{
-        let {otp,password,confirmPassword} = req.body;
-        let user = await userModel.findOneAndUpdate({otp},{password,confirmPassword},{
-            runValidators:true,new:true
-        });
+        let {otp,password,confirmPassword,email} = req.body;
+        let user = await userModel.findOne({email});
+        let currentTime = Date.now();
+        if(currentTime>user.otpExpiry){
+            delete user.otp;
+            delete user.otpExpiry;
+            await user.save();
+            res.json({
+                message:"OTP Expired"
+            })
+        }else{
+            if(user.otp != otp){
+                res.json({
+                    message:"OTP does not match"
+                })
+            }else{
+                user = await userModel.findOneAndUpdate({otp},{password,confirmPassword},{runValidators:true,new:true});
+                delete user.otp;
+                delete user.otpExpiry
+                await user.save();
 
-        console.log(user);
-        
-        res.json({
-            data:user,
-            messaage:"Pasword for the user is reset"
-        })
+                res.json({
+                    user:user,
+                    message:"user password reset complete"
+                })
+            }
+        }
+        //key delte -> get the document obj -> modify that object by removing useless keys
+        //save this doc in db
 
     }catch(err){
         res.send(err.message)

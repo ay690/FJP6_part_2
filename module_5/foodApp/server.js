@@ -52,7 +52,7 @@ app.post("/login",async function(req,res){
                     const token = jwt.sign({data: user['_id']}, secretKey);
                     console.log(token);
                     //put token into cookie
-                    res.cookie("JWT","token");
+                    res.cookie("JWT", token);
                     res.send("User logged in");
                 }else{
                     res.send("Email or Password does not match");
@@ -69,11 +69,36 @@ app.post("/login",async function(req,res){
 })
 
 
-app.get("/users", function(req, res){
-  console.log(req.cookies);
-  res.send("cookie-read successfully");
-  
+app.get("/users", protectRoute,async function(req,res){
+    try{
+        let users = await userModel.find();
+        res.json(users);
+    }catch(err){
+        res.send(err.message);
+    }
+    // console.log(req.cookies);
+    
+    // res.send("cookie read");
+
 })
+
+function protectRoute(req,res,next){
+    try{
+        let cookies = req.cookies;
+        let JWT = cookies.JWT;
+        if(cookies.JWT){
+            const token = jwt.verify(JWT,secretKey);
+            console.log(token);
+            next();
+        }else{
+            res.send("You are not logged in. Kindly login");
+        }
+    }catch(err){
+        console.log(err);
+        res.send(err.message)
+    }
+    
+}
 
 
 app.listen(3000,function(){

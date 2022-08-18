@@ -52,6 +52,9 @@ let userSchema = new Schema({
     },
     address:{
         type:String
+    },
+    otp:{
+        type:String
     }
 })
 

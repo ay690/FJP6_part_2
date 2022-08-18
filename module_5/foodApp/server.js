@@ -69,6 +69,45 @@ app.post("/login",async function(req,res){
 })
 
 
+app.patch("/forgetPassword",async function(req,res){
+    try{
+        let {email} = req.body; //destructure email
+        let otp = otpGenerator();
+        let user = await userModel.findOneAndUpdate({email:email},{otp:otp},{new:true});//ab forget password ke liye hume email, otp, new i.e new password chahiye hoga
+        console.log(user);
+        res.json({
+            data:user,
+            "message":"Otp send to your mail"
+        })
+    }catch(err){
+        res.send(err.message);
+    }
+})
+
+app.patch("/resetPassword", async function(req,res){
+    try{
+        let {otp,password,confirmPassword} = req.body;
+        let user = await userModel.findOneAndUpdate({otp},{password,confirmPassword},{
+            runValidators:true,new:true
+        });
+
+        console.log(user);
+        
+        res.json({
+            data:user,
+            messaage:"Pasword for the user is reset"
+        })
+
+    }catch(err){
+        res.send(err.message)
+    }
+})
+
+function otpGenerator(){
+    return Math.floor(Math.random()*100000);
+}
+
+
 app.get("/users", protectRoute,async function(req,res){
     try{
         let users = await userModel.find();

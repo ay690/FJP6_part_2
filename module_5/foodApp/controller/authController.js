@@ -1,34 +1,12 @@
-const  express = require("express")
-
-const app = express();
-
-//npm i cookie-parser
-const cookieParser = require("cookie-parser");
-
-//npm i jsonwebtoken
-var jwt = require('jsonwebtoken');
-const secretKey = "ajpodhdxnvxrcgdfz";
-
-app.use(express.json());
-app.use(cookieParser());
+const jwt = require("jsonwebtoken")
+const secretKey = "ajpodhdxnvxrcgdfz"
+const userModel = require("../model/userModel");
 
 
-const userModel = require("./userModel");
-
-//signup input:
-//name,
-//password
-//confirm password
-//address
-//email
-//phone
-//pic
-
-
-app.post("/signup",async function(req,res){
+async function signupController(req,res){
     try{
         let data = req.body;
-        let newUser = await userModel.create(data);
+        let newUser =await userModel.create(data);
         console.log(newUser);
         res.json({
             message:"data recieved",
@@ -36,23 +14,24 @@ app.post("/signup",async function(req,res){
     catch(err){
         res.send(err.message)
     }
-})
+}
 
-app.post("/login",async function(req,res){
+
+async function loginController(req,res){
     try{
         let data = req.body;
         // console.log(data);
         let {email,password} = data;
-
         if(email && password){
             let user = await userModel.findOne({email:email});
+            console.log(user);
             if(user){
                 if(user.password == password){
                     //create JWT -> payload, secret key, algo by default -> SHA256
-                    const token = jwt.sign({data: user['_id']}, secretKey);
+                    const token = jwt.sign({ data: user['_id'] }, secretKey);
                     console.log(token);
-                    //put token into cookie
-                    res.cookie("JWT", token);
+                    //put token into cookies
+                    res.cookie("JWT",token);
                     res.send("User logged in");
                 }else{
                     res.send("Email or Password does not match");
@@ -66,10 +45,9 @@ app.post("/login",async function(req,res){
     }catch(err){
         console.log(err.message);
     }
-})
+}
 
-
-app.patch("/forgetPassword",async function(req,res){
+async function forgetPasswordController(req,res){
     try{
         let {email} = req.body;
         let afterFiveMin = Date.now() + 1000*60*5;
@@ -86,9 +64,10 @@ app.patch("/forgetPassword",async function(req,res){
     }catch(err){
         res.send(err.message);
     }
-})
+}
 
-app.patch("/resetPassword", async function(req,res){
+
+async function resetPasswordController(req,res){
     try{
         let {otp,password,confirmPassword,email} = req.body;
         let user = await userModel.findOne({email});
@@ -123,41 +102,12 @@ app.patch("/resetPassword", async function(req,res){
     }catch(err){
         res.send(err.message)
     }
-})
-
-function otpGenerator(){
-    return Math.floor(Math.random()*100000);
 }
 
 
-app.get("/users", protectRoute,async function(req,res){
-    try{
-        let users = await userModel.find();
-        res.json(users);
-    }catch(err){
-        res.send(err.message);
-    }
-    // console.log(req.cookies);
-    
-    // res.send("cookie read");
-
-})
-
-app.get("/user",protectRoute, async function(req,res){
-    try{
-        const userId = req.userId;
-        const user = await userModel.findById(userId);
-        //to send json data
-        res.json({
-            data:user,
-            message:"Data about logged in user is send"
-        })
-    }catch(err){
-        res.send(err.message)
-    }
-    
-})
-
+function otpGenerator(){
+    return Math.floor(Math.random()*1000000);
+}
 
 
 function protectRoute(req,res,next){
@@ -180,7 +130,10 @@ function protectRoute(req,res,next){
     
 }
 
-
-app.listen(3000,function(){
-    console.log("server started at 3000");
-})
+module.exports = {
+    signupController,
+    loginController,
+    resetPasswordController,
+    forgetPasswordController,
+    protectRoute
+}

@@ -10,3 +10,4 @@ add "start":"nodemon server.js" to package.json
 
 req => request
 res => response
+

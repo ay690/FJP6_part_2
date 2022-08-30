@@ -43,3 +43,8 @@
 
 
 ### Further improvement : videos, feedback, meal level
+
+
+### Stripe
+Publishable key => pk_test_51LcWnCSDhWLPSuMyGiOuriaFGrBK0nNBzmMkiExqeSFKJs3ThNgqEq3ssdb7rQ4GxAVT3ICTi3cccItvdgDeO42600AVE9wmvB
+secret key => sk_test_51LcWnCSDhWLPSuMywhMhyCR1y8t9iehW4G0X9LCEfAeuOnsqOjZ0zCCsF74Jtg7DZprynJ5XGAFeb6OKgAJefAdm00f0s4tGkn
